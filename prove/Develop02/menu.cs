@@ -12,9 +12,10 @@ public class Menu
             string response = "";
             string[] options = {"d","a","s","l","q"};
 
-            while(response != "E");
+            while(response != "q")
+            {
 
-            Console.Write("[D]isplay journal \n[A]dd new entry \n[S]ave entry \n[L]oad file \n[Q]uit");
+            Console.Write("[D]isplay journal \n[A]dd new entry \n[S]ave entry \n[L]oad file \n[Q]uit\n");
 
             response = Console.ReadLine() ?? String.Empty;
             response = response.ToLower();
@@ -62,7 +63,7 @@ public class Menu
           _journal._entries = Journal.loadEntries();
           break;
           
-        
+            }
       }
       Console.WriteLine("Goodbye!");
     }

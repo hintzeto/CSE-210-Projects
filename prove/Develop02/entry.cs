@@ -28,7 +28,7 @@ public class Entry
 
     public string stringTheory()
     {
-        return($"{_date}/n{_prompt}/n{_response}");
+        return($"{_date}\n{randomPrompt}\n{_response}");
     }
 
 
