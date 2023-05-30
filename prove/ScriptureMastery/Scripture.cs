@@ -1,12 +1,14 @@
 public class Scripture
 {
-    private List<Word> _words = new List<Word>();
+    private List<string> _words = new List<string>();
     private Reference _ref;
+    private string _scripture;
 
     public Scripture(string scripture, Reference reference)
     {
+        _scripture = scripture;
         _ref = reference;
-        _words = ConvertStringToList(scripture);
+        _words = ConvertStringToList();
     }
 
     public void Display()
@@ -14,16 +16,17 @@ public class Scripture
 
     }
 
-    public string ConvertStringToList()
+    public List<string> ConvertStringToList()
     {
-        List<string> stringList = scripture.Split(delimiter).ToList();
+        char delimiter = ' ';
+        List<string> stringList = _scripture.Split(delimiter).ToList();
 
         return stringList;
     }
 
     public void HideWords()
     {
-
+        
     }
 
     public void TotallyHidden()
