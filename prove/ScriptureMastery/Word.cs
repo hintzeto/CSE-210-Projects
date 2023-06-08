@@ -9,6 +9,10 @@ public class Word
         _word = word;
     }
 
+    public bool GetHidden()
+    {
+        return _isHidden;
+    }
     public void HideWord()
     {
         _isHidden = true;
@@ -23,10 +27,10 @@ public class Word
     {
         if(_isHidden == false)
         {
-            Console.WriteLine(_word);
+            Console.Write($"{_word} ");
         }
         else{
-            Console.WriteLine("");
+            Console.Write($"{new string('-', _word.Length)} ");
         }
     }
 }
