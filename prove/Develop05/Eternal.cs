@@ -2,19 +2,20 @@ public class Eternal : Goal
 {
     int _current;
 
-    public Eternal(double points, string name, string description, int current = 0) : base(points, name, description)
+    public Eternal(int points, string name, string description, int current = 0) : base(points, name, description)
     {
         _current = current;
     }
 
     public override void Display()
     {
-        Console.WriteLine($"This is confirmation that you made progress on an eternal goal you goober. Points: {_points}");
+        Console.WriteLine($"Name: {_name}       Times completed: {_current}");
     }
 
-    public override double Record()
+    public override int Record()
     {
         _current += 1;
+        Console.WriteLine($"Congratulations! You have finished {_name}. You earned {_points} points. You have completed this goal {_current} times.");
         return _points;
     }
 

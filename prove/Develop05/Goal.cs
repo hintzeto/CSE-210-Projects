@@ -1,25 +1,30 @@
 public abstract class Goal
 {
     protected string _name;
-    protected double _points;
+    protected int _points;
     protected string _description;
     protected bool _isComplete = false;
 
-    public Goal(double points, string name, string description)
+    public Goal(int points, string name, string description)
     {
         _points = points;
         _description = description;
         _name = name;
     }
 
-    public virtual double Record(){
+    public virtual int Record(){
         _isComplete = true;
+        Console.WriteLine($"Congratulations! You have finished {_name}. You earned {_points} points.");
         return _points;
     }
 
     public virtual void Display(){
         
-        Console.WriteLine($"This worked. Good job! Points: {_points} Status: {_isComplete}");
+        Console.WriteLine($"Name: {_name}       Status: {_isComplete}");
+    }
+
+    public virtual bool CheckStatus(){
+        return _isComplete;
     }
 
 }

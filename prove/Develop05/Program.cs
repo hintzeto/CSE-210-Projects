@@ -1,21 +1,34 @@
 using System;
+using System.Text.Json;
+using System.Text;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Simple simple = new Simple(500, "Test name", "Test description");
-        // simple.Record();
-        // simple.Display();
+        JsonWriterOptions writerOptions = new() {Indented = true,};
 
-        // Checklist checklist = new Checklist(100, "Checklist test", "Checklist description", 5, 1000);
-        // checklist.Record();
+        using MemoryStream stream = new();
+        using Utf8JsonWriter writer = new(stream, writerOptions);
 
-        // checklist.Display();
+        writer.WriteStartObject();
+        writer.WriteStartArray("This is an array name");
+        writer.WriteStartObject();
+        writer.WritePropertyName("Property name");
+        writer.WriteNumberValue(1);
+        writer.WriteEndObject();
+        writer.WriteEndArray();
+        writer.WriteEndObject();
+        writer.Flush();
+        
+        string json = Encoding.UTF8.GetString(stream.ToArray());
 
-        Eternal eternal = new Eternal(55, "Scriptures", "Read them you idiot");
-        eternal.Record();
-        eternal.Display();
+        Console.WriteLine(json);
+
+
+        // Menu menu = new Menu("Talon");
+        // menu.DisplayMenu();
+
 
     }
 }

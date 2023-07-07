@@ -18,7 +18,7 @@ class Program
         job2._endYear = 2019;
         job2.Display();
 
-        Resume resume = new Resume();
+        Resume resume = new Resume();          
         resume._name = "Jarius";
 
         resume._jobs.Add(job1);
