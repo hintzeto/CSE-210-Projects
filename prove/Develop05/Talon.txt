@@ -1,0 +1,19 @@
+1
+1
+1
+simple test
+50
+simple test description
+True
+checklist test
+50
+checklist test description
+True
+2
+2
+100
+eternal test
+50
+eternal test description
+False
+3

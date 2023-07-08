@@ -3,13 +3,14 @@ public abstract class Goal
     protected string _name;
     protected int _points;
     protected string _description;
-    protected bool _isComplete = false;
+    protected bool _isComplete;
 
-    public Goal(int points, string name, string description)
+    public Goal(int points, string name, string description, bool isComplete = false)
     {
         _points = points;
         _description = description;
         _name = name;
+        _isComplete = isComplete;
     }
 
     public virtual int Record(){
@@ -25,6 +26,15 @@ public abstract class Goal
 
     public virtual bool CheckStatus(){
         return _isComplete;
+    }
+
+    public virtual int GetPoints()
+    {
+        return _points;
+    }
+
+    public virtual string GetSaveData(){
+        return _name + "\n" + _points + "\n" + _description + "\n" + _isComplete;
     }
 
 }

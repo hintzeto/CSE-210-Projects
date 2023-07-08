@@ -5,6 +5,12 @@ public class Menu
   {
     _user = new User($"{name}");
   }
+
+  public Menu(string name, List<Simple> simple, List<Checklist> checklist, List<Eternal> eternal)
+  {
+    _user = new User($"{name}", simple, checklist, eternal);
+  }
+
     public void DisplayMenu()
         {
             
@@ -14,7 +20,7 @@ public class Menu
             while(response != "q")
             {
 
-            Console.Write("[V]iew score\n[R]ecord goal\n[A]dd goal\n[S]ave\n[C]urrent goals\n[Q]uit");
+            Console.WriteLine("[V]iew score\n[R]ecord goal\n[A]dd goal\n[S]ave\n[C]urrent goals\n[Q]uit");
 
             response = Console.ReadLine() ?? String.Empty;
             response = response.ToLower();
@@ -27,7 +33,6 @@ public class Menu
             switch(response.ToLower()){
      
           case "v":
-            int _score = _user.GetScore();
             Console.WriteLine($"You have {_user.GetScore()} points!!");
         
 
@@ -59,7 +64,7 @@ public class Menu
             }
 
             else{
-                _user.ViewEternalGoals();
+                _user.ViewEternalGoals(true);
 
                 Console.WriteLine("Select the ID number of the goal you would like to record.");
                 string toRecord = Console.ReadLine();
@@ -111,9 +116,15 @@ public class Menu
 
           break;
             
+          case "s":
+            string filePath = Directory.GetCurrentDirectory() + "\\" + _user.GetName() + ".txt";
+            string toSave = _user.GetSaveData();
+            File.WriteAllText(filePath, toSave);
+
+          break;
 
           case "c":
-            //Display current goals here
+            _user.ViewAllGoals(false);
           break;
             }
       }

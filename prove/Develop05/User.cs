@@ -10,6 +10,38 @@ public class User
     {
         _userName = name;
     }
+
+    public User(string name, List<Simple> simple, List<Checklist> checklist, List<Eternal> eternal)
+    {
+        _userName = name;
+        _simpleGoals = simple;
+        _checklistGoals = checklist;
+        _eternalGoals = eternal;
+        _score = 0;
+        foreach(Simple goal in _simpleGoals)
+        {
+            if(goal.CheckStatus())
+            {
+                _score += goal.GetPoints();
+            }
+        }
+
+        foreach(Checklist goal in _checklistGoals)
+        {
+            if(goal.CheckStatus())
+            {
+                _score += goal.GetPoints();
+            }
+        }
+
+        foreach(Eternal goal in _eternalGoals)
+        {
+                _score += goal.GetPoints();
+        }
+    }
+
+
+
 // Function for adding simple goal
     public void AddGoal(Simple goal)
     {
@@ -56,17 +88,22 @@ public class User
     }
     }
 
-    public void ViewEternalGoals()
+    public void ViewEternalGoals(bool showIndex = false)
     {
+        int counter = 0;
         foreach(Eternal goal in _eternalGoals){
+            if(showIndex == true){
+                Console.Write($"ID: {counter} ");
+            }
             goal.Display();
+            counter += 1;
         }
     }
 
-    public void ViewAllGoals()
+    public void ViewAllGoals(bool showComplete = true)
     {
-        ViewSimpleGoals();
-        ViewChecklistGoals();
+        ViewSimpleGoals(showComplete);
+        ViewChecklistGoals(showComplete);
         ViewEternalGoals();
     }
 
@@ -93,6 +130,30 @@ public class User
     public int GetScore()
     {
         return _score;
+    }
+
+    public string GetName()
+    {
+        return _userName;
+    }
+
+    public string GetSaveData(){
+        string save = _simpleGoals.Count + "\n" + _checklistGoals.Count + "\n" + _eternalGoals.Count;
+
+        foreach(Simple goal in _simpleGoals)
+        {
+            save += "\n" + goal.GetSaveData();
+        }
+        foreach(Checklist goal in _checklistGoals)
+        {
+            save += "\n" + goal.GetSaveData();
+        }
+        foreach(Eternal goal in _eternalGoals)
+        {
+            save += "\n" + goal.GetSaveData();
+        }
+        
+        return save;
     }
 
 

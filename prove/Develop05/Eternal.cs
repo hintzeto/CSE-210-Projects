@@ -1,8 +1,8 @@
 public class Eternal : Goal
 {
-    int _current;
+    protected int _current;
 
-    public Eternal(int points, string name, string description, int current = 0) : base(points, name, description)
+    public Eternal(int points, string name, string description, int current = 0, bool isComplete = false) : base(points, name, description, isComplete)
     {
         _current = current;
     }
@@ -21,6 +21,16 @@ public class Eternal : Goal
 
     public virtual int GetCount(){
         return _current;
+    }
+
+    public override string GetSaveData()
+    {
+        return base.GetSaveData() + "\n" + _current;
+    }
+
+    public override int GetPoints()
+    {
+        return _points * _current;
     }
 
 }

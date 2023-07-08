@@ -1,14 +1,13 @@
 public class Checklist : Eternal
 {
-    int _current;
+
     int _target;
     int _bonusPoints;
 
-    public Checklist(int points, string name, string description, int target, int bonus, int current = 0) : base(points, name, description)
+    public Checklist(int points, string name, string description, int target, int bonus, int current = 0, bool isComplete = false) : base(points, name, description, current, isComplete)
     {
         _target = target;
         _bonusPoints = bonus;
-        _current = current;
     }
 
     public override void Display()
@@ -41,6 +40,23 @@ public class Checklist : Eternal
 
     public override int GetCount(){
         return _current;
+    }
+
+    public override string GetSaveData()
+    {
+        return base.GetSaveData() + "\n" + _target + "\n" + _bonusPoints;
+    }
+
+    public override int GetPoints()
+    {
+        if(_isComplete == true)
+        {
+            return (_points * _target) + _bonusPoints;
+        }
+        else{
+            return _points * _current;
+        }
+         
     }
 
 }
