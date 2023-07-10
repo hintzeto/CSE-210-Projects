@@ -62,7 +62,7 @@ public class User
     {
         int counter = 0;
         foreach(Simple goal in _simpleGoals){
-            if(showComplete || !goal.CheckStatus())
+            if(showComplete == true || goal.CheckStatus() == false)
             {
                 if(showIndex == true)
                 {
@@ -109,7 +109,7 @@ public class User
 
     public int RecordSimpleGoal(int index)
     {
-        return _simpleGoals[index].Record();
+        return _simpleGoals[index + _simpleGoals.Count - 1].Record();
     }
 
     public int RecordChecklistGoal(int index)

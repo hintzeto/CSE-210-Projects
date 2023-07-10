@@ -1,9 +1,21 @@
-1
+4
 1
 1
 simple test
 50
 simple test description
+True
+do it
+10
+done
+True
+simple test
+500
+description
+True
+another test
+120
+another test description
 True
 checklist test
 50
@@ -16,4 +28,4 @@ eternal test
 50
 eternal test description
 False
-3
+4

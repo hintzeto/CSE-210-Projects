@@ -1,10 +1,10 @@
 public class Event
 {
-    private string _title;
-    private string _description;
-    private Address _address;
-    private string _date;
-    private string _time;
+    protected string _title;
+    protected string _description;
+    protected Address _address;
+    protected string _date;
+    protected string _time;
 
     public Event(string name, string desc, string date, string time, Address address)
     {
@@ -15,18 +15,18 @@ public class Event
         _address = address;
     }
 
-    public string StandardMessage()
+    public void StandardMessage()
     {
-        // title, description, date, time, address
+        Console.WriteLine($"Title: {_title}\nDescription: {_description}\nDate: {_date}\nTime: {_time}\nLocation: {_address}");
     }
 
-    public string FullMessage()
+    public void ShortMessage()
     {
-        //Add even specific info
-    } 
+        Console.WriteLine($"Title: {_title}\nDate:{_date}");
+    }
 
-    public string ShortMessage()
+    public virtual void FullMessage()
     {
-        //Only type, title, date
+        StandardMessage();
     }
 }
